@@ -59,6 +59,16 @@ npm run dev
 ```
 The app will be available at `http://localhost:3000`.
 
+### 5. Seeding Data (Optional)
+
+If you want to generate random themes to test the UI, you can use the built-in seed script. You will need your local Supabase Service Role Key and your Supabase User ID (which you can find in the Supabase Studio under Authentication > Users).
+
+Run the following command to generate themes:
+```bash
+npx tsx scripts/seedThemes.ts <user_id> [count]
+```
+*(Example: `npx tsx scripts/seedThemes.ts 12345-abcde 15`)*
+
 ## Design & Coding Conventions
 
 When submitting a pull request, please ensure you adhere to the following project-specific guidelines:
