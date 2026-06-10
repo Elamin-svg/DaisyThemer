@@ -48,8 +48,13 @@ npm install
 ### 3. Environment Variables
 Create a `.env` file in the root directory based on `.env.example` (if available) and add your Supabase credentials:
 ```env
-SUPABASE_URL=your_supabase_project_url
+SUPABASE_URL=your_supabase_url 
 SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+# OAuth Providers (Google & GitHub)
+SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET=your_google_client_secret
+SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
 ### 4. Run the Dev Server
