@@ -1,4 +1,3 @@
-import Footer from '#/shared/ui/landing/Footer'
 import Hero from '#/shared/ui/landing/Hero'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -18,7 +17,6 @@ function App() {
       <main className="py-24 px-3 sm:px-6">
         <Hero />
       </main>
-      <Footer />
     </>
   )
 }
