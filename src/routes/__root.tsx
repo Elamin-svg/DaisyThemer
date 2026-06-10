@@ -3,6 +3,8 @@ import { HeadContent, Outlet, Scripts, createRootRouteWithContext, Link } from '
 import { Toaster } from 'sonner'
 import Header from '#/shared/ui/Header'
 import appCss from '../styles.css?url'
+import { Analytics } from "@vercel/analytics/react"
+
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { getUser } from '#/features/auth/api/auth'
@@ -64,6 +66,7 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
+      <Analytics />
     </RootDocument>
   )
 }
