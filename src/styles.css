@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+@plugin "tailwindcss-motion";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+
+  --color-base-100: oklch(1 0 0);
+  --color-base-200: oklch(0.98 0 0);
+  --color-base-300: oklch(0.94 0 0);
+  --color-base-content: oklch(0.21 0 0);
+
+  --color-primary: oklch(0.21 0 0);
+  --color-primary-content: oklch(0.9847 0.0031 286.48);
+
+  --color-secondary: oklch(0.7946 0.0933 192.82);
+  --color-secondary-content: oklch(0.1 0.0933 192.82);
+
+  --color-accent: oklch(0.7946 0.0933 308.19);
+  --color-accent-content: oklch(0.1 0.0933 308.19);
+
+  --color-neutral: oklch(0.16 0.005 308.73);
+  --color-neutral-content: #f1f4f9;
+
+  --color-info: oklch(0.7946 0.0933 241.96);
+  --color-info-content: oklch(0.2 0.0933 241.96);
+
+  --color-success: oklch(0.7946 0.0933 145.82);
+  --color-success-content: oklch(0.2 0.0933 145.82);
+
+  --color-warning: oklch(0.7946 0.0933 90.27);
+  --color-warning-content: oklch(0.2 0.0933 90.27);
+
+  --color-error: oklch(0.6109 0.1964 20.83);
+  --color-error-content: oklch(0.1 0.1964 20.83);
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.275rem;
+  --size-field: 0.275rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  prefersdark: false;
+  color-scheme: "dark";
+  --color-base-100: oklch(0.16 0.005 308.73);
+  --color-base-200: oklch(0.20 0.005 308.73);
+  --color-base-300: oklch(0.3 0.005 308.73);
+  --color-base-content: #f1f4f9;
+  --color-primary: oklch(0.7946 0.0933 65.7);
+  --color-primary-content: oklch(0.1 0.0933 65.7);
+  --color-secondary: oklch(0.7946 0.0933 192.82);
+  --color-secondary-content: oklch(0.1 0.0933 192.82);
+  --color-accent: oklch(0.7946 0.0933 308.19);
+  --color-accent-content: oklch(0.1 0.0933 308.19);
+  --color-neutral: oklch(0.99 0.005 308.73);
+  --color-neutral-content: #0f1110;
+  --color-info: oklch(0.7946 0.0933 241.96);
+  --color-info-content: oklch(0.2 0.0933 241.96);
+  --color-success: oklch(0.7946 0.0933 145.82);
+  --color-success-content: oklch(0.2 0.0933 145.82);
+  --color-warning: oklch(0.7946 0.0933 90.27);
+  --color-warning-content: oklch(0.2 0.0933 90.27);
+  --color-error: oklch(0.7946 0.0933 20.83);
+  --color-error-content: oklch(0.2 0.0933 20.83);
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.275rem;
+  --size-field: 0.275rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+:root {
+  @apply bg-base-100 selection:bg-primary selection:text-primary-content scrollbar-gutter-stable;
+  color-scheme: dark;
+}
+
+
+
+@layer utilities {
+  .btn:not([data-theme="preview-custom"] .btn) {
+    @apply font-medium;
+  }
+
+  .btn-soft:not([data-theme="preview-custom"] .btn-soft):not(.btn-error) {
+    @apply text-base-content/80;
+  }
+
+  .label:not([data-theme="preview-custom"] .label) {
+    @apply text-sm m-0 mb-1.5 text-base-content/90;
+  }
+
+  .dropdown-content:not([data-theme="preview-custom"] .dropdown-content) {
+    @apply border border-base-300;
+  }
+
+  .btn-outline:not([data-theme="preview-custom"] .btn-outline) {
+    @apply border-base-300 bg-base-100 hover:bg-base-300;
+  }
+
+  .btn-ghost:not([data-theme="preview-custom"] .btn-ghost):not(.btn-error) {
+    @apply hover:bg-base-300;
+  }
+
+  .btn-ghost:not([data-theme="preview-custom"] .btn-ghost):is(.btn-error) {
+    @apply hover:bg-error/10 border-transparent;
+  }
+
+  .btn:not(.btn-ghost) {
+    @apply shadow-2xs
+  }
+
+  .input:not(.input-ghost) {
+    @apply shadow-2xs
+  }
+
+  .textarea:not(.textarea-ghost) {
+    @apply shadow-2xs
+  }
+
+  .btn-sm:not([data-theme="preview-custom"] .btn-sm) {
+    @apply text-sm;
+  }
+
+  .input:not([data-theme="preview-custom"] .input) {
+    @apply bg-base-200 outline-0 transition-all;
+  }
+
+  .textarea:not([data-theme="preview-custom"] .textarea) {
+    @apply bg-base-200 outline-0 transition-all;
+  }
+}
+
+.page-wrap {
+  @apply px-3 sm:px-6 xl:px-0 pb-8 pt-23 sm:pt-26 max-w-[1440px] mx-auto motion-preset-fade-sm motion-ease-in;
+}
