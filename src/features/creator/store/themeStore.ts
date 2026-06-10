@@ -4,11 +4,6 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 const LOCALSTORAGE_KEY = 'theme-builder-draft';
 
-/** Only persist theme state to localStorage when on localhost (dev environment). */
-const isLocalhost =
-  typeof window !== 'undefined' &&
-  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-
 const DEFAULT_CSS_THEME: CssTheme = {
   "primary": "oklch(0.7946 0.0933 65.7)",
   "primary-content": "oklch(0.1 0.0933 65.7)",
@@ -72,15 +67,12 @@ export const useThemeStore = create<ThemeState>()(
     {
       name: LOCALSTORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
-      // Only persist the theme data fields; setters are not serialisable.
       partialize: (state) => ({
         themeName: state.themeName,
         cssTheme: state.cssTheme,
         cssOverrides: state.cssOverrides,
         compiledCssOverrides: state.compiledCssOverrides,
       }),
-      // Skip hydration entirely on non-localhost environments.
-      skipHydration: !isLocalhost,
     },
   ),
 );
