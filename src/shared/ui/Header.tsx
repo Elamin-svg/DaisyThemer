@@ -3,6 +3,7 @@ import { BookmarkIcon as Bookmark, PlusCircleIcon as PlusCircle, MagnifyingGlass
 import { Link, useLoaderData, useLocation } from '@tanstack/react-router';
 import { AuthModal } from "#/features/auth/components/AuthModal";
 import UserDropdown from "#/features/auth/components/UserDropdown";
+import { Logo } from './icons/Logo';
 
 const LINKS = [{
   name: "Create",
@@ -42,7 +43,7 @@ function MobileNav({ isActive, user, dbUser, openModal }: { isActive: (path: str
         <div className="menu bg-base-100 text-base-content min-h-full w-80 p-6 flex flex-col gap-1">
           <div className="mb-4">
             <Link to="/" className="tracking-tighter text-xl font-medium" onClick={closeDrawer}>
-              Daisy<span className='text-primary'>Themer</span>
+              <Logo height="32" />
             </Link>
           </div>
           <ul className="gap-1 flex flex-col">
@@ -95,7 +96,7 @@ export default function Header() {
     <div className='fixed w-screen    bg-base-100/90 backdrop-blur-lg z-10 '>
       <header className="navbar px-3 sm:px-6 xl:px-0  max-w-[1440px]    mx-auto">
         <div className="navbar-start">
-          <Link to="/" className="tracking-tighter text-xl font-medium">Daisy<span className='text-primary'>Themer</span></Link>
+          <Link to="/" ><Logo height="28" /></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal  px-1 gap-2">
