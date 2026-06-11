@@ -1,7 +1,7 @@
 
 import type { DatabaseTheme } from "#/shared/types/db";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { Link, useLoaderData } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import dayjs from "dayjs";
 import React from "react";
 
