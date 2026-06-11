@@ -1,15 +1,13 @@
 <div align="center">
 
-![Themes DaisyUI](./public/app-preview.png)
+<img src="./public/app-preview.png" alt="DaisyThemer Preview" style="border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
 
-# Themes DaisyUI
-
-A beautiful web application designed for creating, exploring, and sharing your own custom DaisyUI themes.
+# DaisyThemer
 
 </div>
 
 ### About the Project
-Themes DaisyUI provides a platform for developers and designers to showcase their creativity. You can build UI themes using our intuitive visual builder and share them with the community.
+DaisyThemer provides a platform for developers and designers to showcase their creativity. You can build UI themes using our intuitive visual builder and share them with the community.
 
 ### Key Highlights
 **Visual Theme Builder**
