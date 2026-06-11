@@ -94,7 +94,8 @@ export const PreviewFrame = React.memo(function PreviewFrame({
     else Content = ComponentsPreview;
 
     return (
-      <Suspense fallback={<div className="p-8 text-center text-base-content/50"><span className="loading loading-spinner"></span></div>}>
+      <Suspense fallback={<div className="p-8 flex  text-center min-h-144 text-base-content/50">
+        <span className="loading loading-spinner m-auto"></span></div>}>
         <Content />
       </Suspense>
     );
@@ -148,7 +149,7 @@ export const PreviewFrame = React.memo(function PreviewFrame({
           <section
             data-theme="preview-custom"
             style={{ ...inlineVars, fontFamily } as React.CSSProperties}
-            className="w-full flex-1  overflow-y-auto"
+            className="w-full flex-1  overflow-y-auto min-h-144"
           >
             {previewContent}
           </section>
