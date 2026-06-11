@@ -35,13 +35,22 @@ export const getAllThemes = createServerFn({ method: 'GET' })
 
         query = query.range(from, to);
 
+        const [
+            { data, error },
+            { data: { user } }
+        ] = await Promise.all([
+            query,
+            supabase.auth.getUser()
+        ]);
 
-        const { data, error } = await query;
+        if (error) throw new Error("Failed to fetch themes.");
 
-        if (error) {
-            console.error("Error fetching themes:", error);
-            throw new Error("Failed to fetch themes.");
-        }
+        // TODO: Move is_liked state directly in DB
+        const d = (data || []).map((t: any) => ({
+            ...t,
+            is_liked: Boolean(user?.id && t.liked_by?.includes(user.id))
+        }));
 
-        return (data || []) as unknown as DatabaseTheme[];
+
+        return d as unknown as DatabaseTheme[];
     });
