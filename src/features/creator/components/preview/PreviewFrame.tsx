@@ -149,7 +149,7 @@ export const PreviewFrame = React.memo(function PreviewFrame({
           <section
             data-theme="preview-custom"
             style={{ ...inlineVars, fontFamily } as React.CSSProperties}
-            className="w-full flex-1  overflow-y-auto"
+            className="w-full flex-1  overflow-y-auto min-h-144"
           >
             {previewContent}
           </section>
