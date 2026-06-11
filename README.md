@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="./public/app-preview.png" alt="DaisyThemer Preview" style="border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+<h1 style="border-bottom: none; font-size: 3.5rem; margin-bottom: 1.5rem; margin-top: 0;">Daisy<span class="text-primary">Themer</span></h1>
 
-# DaisyThemer
+<img src="./public/app-preview.png" alt="DaisyThemer Preview" style="border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
 
 </div>
 
