@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 import Header from '#/shared/ui/Header'
 import appCss from '../styles.css?url'
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from '@vercel/speed-insights/react'
 
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -67,6 +68,7 @@ function RootComponent() {
     <RootDocument>
       <Outlet />
       <Analytics />
+      <SpeedInsights />
     </RootDocument>
   )
 }
