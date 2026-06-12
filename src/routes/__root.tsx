@@ -1,5 +1,5 @@
 import { QueryClient } from '@tanstack/react-query'
-import { HeadContent, Outlet, Scripts, createRootRouteWithContext, Link } from '@tanstack/react-router'
+import { HeadContent, Outlet, Scripts, createRootRouteWithContext, Link, defer } from '@tanstack/react-router'
 import { Toaster } from 'sonner'
 import Header from '#/shared/ui/Header'
 import appCss from '../styles.css?url'
@@ -57,9 +57,9 @@ export const Route = createRootRouteWithContext<{
       </RootDocument>
     );
   },
-  loader: async () => {
-    const userData = await getUser();
-    return { user: userData?.user, dbUser: userData?.dbUser }
+  loader: () => {
+    const authPromise = getUser();
+    return { authPromise: defer(authPromise) }
   }
 })
 

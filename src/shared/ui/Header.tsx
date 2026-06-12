@@ -1,9 +1,10 @@
 import { useAuthModalStore } from '#/features/auth/store/authModalStore';
 import { BookmarkIcon as Bookmark, PlusCircleIcon as PlusCircle, MagnifyingGlassIcon as SearchIcon } from '@heroicons/react/24/outline';
-import { Link, useLoaderData, useLocation } from '@tanstack/react-router';
+import { Link, useLoaderData, useLocation, Await } from '@tanstack/react-router';
 import { AuthModal } from "#/features/auth/components/AuthModal";
 import UserDropdown from "#/features/auth/components/UserDropdown";
 import { Logo } from './icons/Logo';
+import React, { Suspense } from 'react';
 
 const LINKS = [{
   name: "Create",
@@ -19,10 +20,7 @@ const LINKS = [{
   icon: Bookmark
 }]
 
-
-
-
-function MobileNav({ isActive, user, dbUser, openModal }: { isActive: (path: string) => boolean, user: any, dbUser: any, openModal: (type: "login" | "register") => void }) {
+function MobileNav({ isActive, authPromise, openModal }: { isActive: (path: string) => boolean, authPromise: any, openModal: (type: "login" | "register") => void }) {
   const closeDrawer = () => {
     const toggle = document.getElementById('nav-drawer') as HTMLInputElement | null;
     if (toggle) toggle.checked = false;
@@ -62,20 +60,24 @@ function MobileNav({ isActive, user, dbUser, openModal }: { isActive: (path: str
           </ul>
 
           <div className="mt-auto pt-6 w-full">
-            {!user ? (
-              <div className="flex flex-col gap-2">
-                <button className='btn btn-primary w-full' onClick={() => { closeDrawer(); openModal('register'); }}>Get Started</button>
-                <button className='btn btn-outline border-base-300 w-full' onClick={() => { closeDrawer(); openModal('login'); }}>Log In</button>
-              </div>
-            ) : (
-              <div className="flex justify-between items-center bg-base-200/50 p-3 rounded-xl border border-base-300">
-                <div className="flex flex-col min-w-0">
-                  <p className='text-sm font-medium truncate'>{dbUser?.name || "User"}</p>
-                  <p className="text-xs text-base-content/60 truncate">{user.email}</p>
-                </div>
-                <UserDropdown user={user as any} dbUser={dbUser} className="dropdown-top dropdown-end" />
-              </div>
-            )}
+            <Suspense>
+              <Await promise={authPromise}>
+                {(auth: any) => !auth.user ? (
+                  <div className="flex flex-col gap-2">
+                    <button className='btn btn-primary w-full' onClick={() => { closeDrawer(); openModal('register'); }}>Get Started</button>
+                    <button className='btn btn-outline border-base-300 w-full' onClick={() => { closeDrawer(); openModal('login'); }}>Log In</button>
+                  </div>
+                ) : (
+                  <div className="flex justify-between items-center bg-base-200/50 p-3 rounded-xl border border-base-300">
+                    <div className="flex flex-col min-w-0">
+                      <p className='text-sm font-medium truncate'>{auth.dbUser?.name || "User"}</p>
+                      <p className="text-xs text-base-content/60 truncate">{auth.user.email}</p>
+                    </div>
+                    <UserDropdown user={auth.user} dbUser={auth.dbUser} className="dropdown-top dropdown-end" />
+                  </div>
+                )}
+              </Await>
+            </Suspense>
           </div>
         </div>
       </div>
@@ -86,7 +88,7 @@ function MobileNav({ isActive, user, dbUser, openModal }: { isActive: (path: str
 export default function Header() {
   const { isOpen, type, openModal, closeModal, setType } = useAuthModalStore();
   const location = useLocation()
-  const { user, dbUser } = useLoaderData({ from: "__root__" }) as any;
+  const { authPromise } = useLoaderData({ from: "__root__" }) as any;
 
   const isActive = (path: string) => {
     return location.pathname.includes(path)
@@ -111,16 +113,24 @@ export default function Header() {
         </div>
 
         {/* Desktop End */}
-        {!user ? <div className="navbar-end gap-2 hidden lg:flex">
-          <button className='btn btn-sm btn-primary' onClick={() => openModal('register')}>Get Started</button>
-          <button className='btn btn-sm btn-outline border-base-300' onClick={() => openModal('login')}>Log In</button>
-        </div> : <div className="navbar-end gap-2 hidden lg:flex">
-          <UserDropdown user={user as any} dbUser={dbUser} />
-        </div>}
+        <Suspense >
+          <Await promise={authPromise}>
+            {(auth: any) => !auth.user ? (
+              <div className="navbar-end gap-2 hidden lg:flex motion-preset-fade">
+                <button className='btn btn-sm btn-primary' onClick={() => openModal('register')}>Get Started</button>
+                <button className='btn btn-sm btn-outline border-base-300' onClick={() => openModal('login')}>Log In</button>
+              </div>
+            ) : (
+              <div className="navbar-end gap-2 hidden lg:flex motion-preset-fade">
+                <UserDropdown user={auth.user} dbUser={auth.dbUser} />
+              </div>
+            )}
+          </Await>
+        </Suspense>
 
         {/* Mobile End */}
         <div className="navbar-end flex lg:hidden">
-          <MobileNav isActive={isActive} user={user} dbUser={dbUser} openModal={openModal} />
+          <MobileNav isActive={isActive} authPromise={authPromise} openModal={openModal} />
         </div>
       </header>
       <AuthModal

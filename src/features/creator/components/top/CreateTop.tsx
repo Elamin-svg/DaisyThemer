@@ -16,7 +16,7 @@ export default function CreateTop() {
     const setCssTheme = useThemeStore((state) => state.setCssTheme);
     const cssTheme = useThemeStore((state) => state.cssTheme);
     const { openModal } = useAuthModalStore();
-    const { user } = useLoaderData({ from: "__root__" }) as any;
+    const { authPromise } = useLoaderData({ from: "__root__" }) as any;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isPublishModalOpen, setIsPublishModalOpen] = useState(false);
@@ -55,8 +55,9 @@ export default function CreateTop() {
                             <CodeBracketIcon className="size-3 mr-0.5" />
                             CSS
                         </button>
-                        <button className="btn btn-sm btn-primary" onClick={() => {
-                            if (!user) {
+                        <button className="btn btn-sm btn-primary" onClick={async () => {
+                            const auth = await authPromise;
+                            if (!auth?.user) {
                                 openModal('login');
                                 return;
                             }
@@ -102,8 +103,9 @@ export default function CreateTop() {
                         </DropdownItem>
                         <DropdownItem 
                             className="text-primary font-medium" 
-                            onClick={() => {
-                                if (!user) {
+                            onClick={async () => {
+                                const auth = await authPromise;
+                                if (!auth?.user) {
                                     openModal('login');
                                     return;
                                 }
