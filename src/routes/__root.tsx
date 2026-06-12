@@ -80,6 +80,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Instant Load: DM Sans */}
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+        {/* Deferred Load: Other Fonts */}
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=Fira+Code:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Merriweather:wght@300;400;700;900&amp;family=Outfit:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" />
+        <link rel="stylesheet" media="print" onLoad={(e) => { e.currentTarget.media = 'all' }} href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=Fira+Code:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Merriweather:wght@300;400;700;900&amp;family=Outfit:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" />
+        <noscript>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=Fira+Code:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Merriweather:wght@300;400;700;900&amp;family=Outfit:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" />
+        </noscript>
       </head>
       <body
         suppressHydrationWarning
