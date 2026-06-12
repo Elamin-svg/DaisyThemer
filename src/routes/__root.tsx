@@ -86,7 +86,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
         {/* Deferred Load: Other Fonts */}
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=Fira+Code:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Merriweather:wght@300;400;700;900&amp;family=Outfit:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" />
-        <link rel="stylesheet" media="print" onLoad={(e) => { e.currentTarget.media = 'all' }} href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=Fira+Code:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Merriweather:wght@300;400;700;900&amp;family=Outfit:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap';
+          document.head.appendChild(l);
+        `}} />
         <noscript>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&amp;family=Fira+Code:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Merriweather:wght@300;400;700;900&amp;family=Outfit:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" />
         </noscript>
