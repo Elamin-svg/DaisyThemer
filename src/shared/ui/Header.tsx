@@ -40,7 +40,7 @@ function MobileNav({ isActive, authPromise, openModal }: { isActive: (path: stri
         <label htmlFor="nav-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
         <div className="menu bg-base-100 text-base-content min-h-full w-80 p-6 flex flex-col gap-1">
           <div className="mb-4">
-            <Link to="/" className="tracking-tighter text-xl font-medium" onClick={closeDrawer}>
+            <Link disabled={isActive("/")} to="/" className="tracking-tighter text-xl font-medium" onClick={closeDrawer}>
               <Logo height="32" />
             </Link>
           </div>
@@ -49,8 +49,9 @@ function MobileNav({ isActive, authPromise, openModal }: { isActive: (path: stri
               <li key={link.name}>
                 <Link
                   to={`${link.link}`}
+                  disabled={isActive(link.link)}
                   onClick={closeDrawer}
-                  className={`rounded-lg text-base px-2.5 gap-2 ${isActive(link.link) ? "text-primary! bg-primary/10" : "hover:text-primary! hover:bg-primary/10"}`}
+                  className={`rounded-lg text-base cursor-pointer! px-2.5 gap-2 ${isActive(link.link) ? "text-primary! bg-primary/10" : "hover:text-primary! hover:bg-primary/10"}`}
                 >
                   <link.icon className='size-5' />
                   {link.name}
@@ -91,20 +92,21 @@ export default function Header() {
   const { authPromise } = useLoaderData({ from: "__root__" }) as any;
 
   const isActive = (path: string) => {
-    return location.pathname.includes(path)
+    return location.pathname === path
   }
 
   return (
     <div className='fixed w-screen    bg-base-100/90 backdrop-blur-lg z-10 '>
       <header className="navbar px-3 sm:px-6 xl:px-0  max-w-[1440px]    mx-auto">
         <div className="navbar-start">
-          <Link to="/" ><Logo height="28" /></Link>
+          <Link to="/" disabled={isActive("/")} ><Logo height="28" /></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal  px-1 gap-2">
             {LINKS.map((link) => (
               <li className='' key={link.name}>
-                <Link to={`${link.link}`} className={`rounded-lg text-base px-2.5 gap-2 ${isActive(link.link) ? "text-primary! bg-primary/10  " : "hover:text-primary! hover:bg-primary/10  "}`}>
+                <Link disabled={isActive(link.link)}
+                  to={`${link.link}`} className={`rounded-lg cursor-pointer! text-base px-2.5 gap-2 ${isActive(link.link) ? "text-primary! bg-primary/10  " : "hover:text-primary! hover:bg-primary/10  "}`}>
                   <link.icon className='size-3.5' />
                   {link.name}</Link>
               </li>
