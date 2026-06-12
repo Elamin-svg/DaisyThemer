@@ -72,7 +72,7 @@ function RouteSkeleton() {
 }
 
 function ThemeDetail({ theme }: { theme: DatabaseTheme }) {
-  const { user } = useLoaderData({ from: '__root__' }) as any;
+  const { authPromise } = useLoaderData({ from: '__root__' }) as any;
   const [isCopyModalOpen, setIsCopyModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -102,7 +102,8 @@ function ThemeDetail({ theme }: { theme: DatabaseTheme }) {
   }, [theme.overrides, compileCssFn]);
 
   const handleLike = useCallback(async () => {
-    if (!user) {
+    const auth = await authPromise;
+    if (!auth?.user) {
       openModal('login');
       return;
     }
@@ -125,7 +126,7 @@ function ThemeDetail({ theme }: { theme: DatabaseTheme }) {
     } finally {
       setIsLiking(false)
     }
-  }, [isLiked, likesCount, user, theme.id, toggleLikeFn, openModal]);
+  }, [isLiked, likesCount, authPromise, theme.id, toggleLikeFn, openModal]);
 
   const handleDelete = useCallback(async () => {
     setIsDeleting(true);
