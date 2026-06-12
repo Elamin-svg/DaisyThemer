@@ -113,7 +113,7 @@ export default function Header() {
         </div>
 
         {/* Desktop End */}
-        <Suspense >
+        <Suspense fallback={<div className='navbar-end' />}>
           <Await promise={authPromise}>
             {(auth: any) => !auth.user ? (
               <div className="navbar-end gap-2 hidden lg:flex motion-preset-fade">
